@@ -12,7 +12,7 @@ head(data)
 sample.ind <- sample(2, 
                      nrow(data),
                      replace = T,
-                     prob = c(0.6,0.4))
+                     prob = c(0.05,0.95))
 data.dev <- data[sample.ind==1,]
 data.val <- data[sample.ind==2,]
 
@@ -38,13 +38,10 @@ rf = randomForest(rf.formula,
                    data = data.dev)
 
 plot(rf)
-#Looks like after 100 trees there's not a huge reduction in error rate, 
-
 
 varImpPlot(rf,
            sort = T,
-           main="Variable Importance",
-           n.var=4)
+           main="Variable Importance")
 #Looks like Odor is the greatest indicator
 
 

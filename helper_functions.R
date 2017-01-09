@@ -18,43 +18,37 @@ fetchAndCleanData = function(){
   
   
   #column names are added
-  colnames(shrooms) = c("Edible","Cap-Shape","Cap-Surface","Cap-Color","Odor")
+  colnames(shrooms) = c("Edible","CapShape","CapSurface","CapColor","Odor")
+
   
+  #CapShape
+  levels(shrooms$`CapShape`) = c(levels(shrooms$`CapShape`), c("Bell","Conical","Convex","Flat","Knobbed","Sunken"))
+  shrooms$`CapShape`[shrooms$`CapShape` == "b"] = "Bell"
+  shrooms$`CapShape`[shrooms$`CapShape` == "c"] = "Conical"
+  shrooms$`CapShape`[shrooms$`CapShape` == "x"] = "Convex"
+  shrooms$`CapShape`[shrooms$`CapShape` == "f"] = "Flat"
+  shrooms$`CapShape`[shrooms$`CapShape` == "k"] = "Knobbed"
+  shrooms$`CapShape`[shrooms$`CapShape` == "s"] = "Sunken"
   
-  #Edible
-  #Need to add the levels for every variable
-  levels(shrooms$`Edible`) = c(levels(shrooms$`Edible`), c("Edible","Poisonous"))
-  shrooms$Edible = shrooms$`Edible`[shrooms$`Edible` == "e"] = "Edible"
-  shrooms$`Edible`[shrooms$`Edible` == "p"] = "Poisonous"
+  #CapSurface
+  levels(shrooms$`CapSurface`) = c(levels(shrooms$`CapSurface`), c("Fibrous", "Grooves", "Scaly", "Smooth"))
+  shrooms$`CapSurface`[shrooms$`CapSurface` == "f"] = "Fibrous"
+  shrooms$`CapSurface`[shrooms$`CapSurface` == "g"] = "Grooves"
+  shrooms$`CapSurface`[shrooms$`CapSurface` == "y"] = "Scaly"
+  shrooms$`CapSurface`[shrooms$`CapSurface` == "s"] = "Smooth"
   
-  #Cap-Shape
-  levels(shrooms$`Cap-Shape`) = c(levels(shrooms$`Cap-Shape`), c("Bell","Conical","Convex","Flat","Knobbed","Sunken"))
-  shrooms$`Cap-Shape`[shrooms$`Cap-Shape` == "b"] = "Bell"
-  shrooms$`Cap-Shape`[shrooms$`Cap-Shape` == "c"] = "Conical"
-  shrooms$`Cap-Shape`[shrooms$`Cap-Shape` == "x"] = "Convex"
-  shrooms$`Cap-Shape`[shrooms$`Cap-Shape` == "f"] = "Flat"
-  shrooms$`Cap-Shape`[shrooms$`Cap-Shape` == "k"] = "Knobbed"
-  shrooms$`Cap-Shape`[shrooms$`Cap-Shape` == "s"] = "Sunken"
-  
-  #Cap-Surface
-  levels(shrooms$`Cap-Surface`) = c(levels(shrooms$`Cap-Surface`), c("Fibrous", "Grooves", "Scaly", "Smooth"))
-  shrooms$`Cap-Surface`[shrooms$`Cap-Surface` == "f"] = "Fibrous"
-  shrooms$`Cap-Surface`[shrooms$`Cap-Surface` == "g"] = "Grooves"
-  shrooms$`Cap-Surface`[shrooms$`Cap-Surface` == "y"] = "Scaly"
-  shrooms$`Cap-Surface`[shrooms$`Cap-Surface` == "s"] = "Smooth"
-  
-  #Cap-Color
-  levels(shrooms$`Cap-Color`) = c(levels(shrooms$`Cap-Color`), c("Brown", "Buff", "Cinnamon", "Gray", "Green", "Pink", "Purple", "Red", "White", "Yellow"))
-  shrooms$`Cap-Color`[shrooms$`Cap-Color` == "n"] = "Brown"
-  shrooms$`Cap-Color`[shrooms$`Cap-Color` == "b"] = "Buff"
-  shrooms$`Cap-Color`[shrooms$`Cap-Color` == "c"] = "Cinnamon"
-  shrooms$`Cap-Color`[shrooms$`Cap-Color` == "g"] = "Gray"
-  shrooms$`Cap-Color`[shrooms$`Cap-Color` == "r"] = "Green"
-  shrooms$`Cap-Color`[shrooms$`Cap-Color` == "p"] = "Pink"
-  shrooms$`Cap-Color`[shrooms$`Cap-Color` == "u"] = "Purple"
-  shrooms$`Cap-Color`[shrooms$`Cap-Color` == "e"] = "Red"
-  shrooms$`Cap-Color`[shrooms$`Cap-Color` == "w"] = "White"
-  shrooms$`Cap-Color`[shrooms$`Cap-Color` == "y"] = "Yellow"
+  #CapColor
+  levels(shrooms$`CapColor`) = c(levels(shrooms$`CapColor`), c("Brown", "Buff", "Cinnamon", "Gray", "Green", "Pink", "Purple", "Red", "White", "Yellow"))
+  shrooms$`CapColor`[shrooms$`CapColor` == "n"] = "Brown"
+  shrooms$`CapColor`[shrooms$`CapColor` == "b"] = "Buff"
+  shrooms$`CapColor`[shrooms$`CapColor` == "c"] = "Cinnamon"
+  shrooms$`CapColor`[shrooms$`CapColor` == "g"] = "Gray"
+  shrooms$`CapColor`[shrooms$`CapColor` == "r"] = "Green"
+  shrooms$`CapColor`[shrooms$`CapColor` == "p"] = "Pink"
+  shrooms$`CapColor`[shrooms$`CapColor` == "u"] = "Purple"
+  shrooms$`CapColor`[shrooms$`CapColor` == "e"] = "Red"
+  shrooms$`CapColor`[shrooms$`CapColor` == "w"] = "White"
+  shrooms$`CapColor`[shrooms$`CapColor` == "y"] = "Yellow"
   
   #Odor
   levels(shrooms$Odor) = c(levels(shrooms$Odor), c("Almond", "Anise", "Creosote", "Fishy", "Foul", "Musty", "None", "Pungent", "Spicy"))
@@ -67,6 +61,12 @@ fetchAndCleanData = function(){
   shrooms$Odor[shrooms$Odor == "n"] = "None"
   shrooms$Odor[shrooms$Odor == "p"] = "Pungent"
   shrooms$Odor[shrooms$Odor == "s"] = "Spicy"
+
+  #Edible
+  shrooms$Edible = as.character(shrooms$Edible)
+  shrooms$Edible[shrooms$Edible == "e"] = "Edible"
+  shrooms$Edible[shrooms$Edible == 'p'] = "Poisonous"
+  shrooms$Edible = factor(shrooms$Edible)
   
   return(shrooms)
 }

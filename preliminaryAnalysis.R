@@ -22,7 +22,18 @@ table(data.dev$Edible)/nrow(data.dev)
 table(data.val$Edible)/nrow(data.val)
 
 
-rf = randomForest(Edible ~ CapShape + CapSurface + CapColor + Odor, 
+varNames <- names(data.dev)
+# Exclude ID or Response variable
+varNames <- varNames[!varNames %in% c("Edible")]
+
+# Add response variable and convert to a formula object
+rf.formula <- as.formula(paste("Edible", 
+                       paste(varNames, 
+                             collapse = "+"), 
+                       sep = " ~ "))
+
+
+rf = randomForest(rf.formula, 
                    ntree = 500,
                    data = data.dev)
 

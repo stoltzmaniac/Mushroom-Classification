@@ -43,10 +43,17 @@ fetchAndCleanData = function(){
                         "Habitat")
 
   
-  # Edible
-  levels(shrooms$Edible) = c(levels(shrooms$Edible), c("Poisonous","Edible"))
-  shrooms$Edible[shrooms$Edible == "p"] = "Poisonous"
+  #Edible
+  shrooms$Edible = as.character(shrooms$Edible)
   shrooms$Edible[shrooms$Edible == "e"] = "Edible"
+  shrooms$Edible[shrooms$Edible == 'p'] = "Poisonous"
+  shrooms$Edible = factor(shrooms$Edible)
+  
+  
+  # Edible
+  #levels(shrooms$Edible) = c(levels(shrooms$Edible), c("Poisonous","Edible"))
+  #shrooms$Edible[shrooms$Edible == "p"] = "Poisonous"
+  #shrooms$Edible[shrooms$Edible == "e"] = "Edible"
   
   #CapShape
   levels(shrooms$`CapShape`) = c(levels(shrooms$`CapShape`), c("Bell","Conical","Convex","Flat","Knobbed","Sunken"))

@@ -85,9 +85,9 @@ fetchAndCleanData = function(){
   shrooms$`CapColor`[shrooms$`CapColor` == "y"] = "Yellow"
 
   # Bruises
-  levels(shrooms$Bruises) = c(levels(shrooms$Bruises), c("Yes","No"))
-  shrooms$Bruises[shrooms$Bruises == "y"] = "Yes"
-  shrooms$Bruises[shrooms$Bruises == "n"] = "No"
+  levels(shrooms$Bruises) = c(levels(shrooms$Bruises), c("True","False"))
+  shrooms$Bruises[shrooms$Bruises == "t"] = "True"
+  shrooms$Bruises[shrooms$Bruises == "f"] = "False"
     
   #Odor
   levels(shrooms$Odor) = c(levels(shrooms$Odor), c("Almond", "Anise", "Creosote", "Fishy", "Foul", "Musty", "None", "Pungent", "Spicy"))
